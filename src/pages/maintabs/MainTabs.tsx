@@ -54,7 +54,7 @@ const MainTabs: React.FC<MainTabsProps> = () => {
         <Route path="/tabs/cash" render={() => <Cash />} exact={true} />
       </IonRouterOutlet>
       <IonTabBar slot="bottom">
-        <IonTabButton tab="schedule" href="/tabs/schedule">
+        {/* <IonTabButton tab="schedule" href="/tabs/schedule">
           <IonIcon icon={calendar} />
           <IonLabel>Schedule</IonLabel>
         </IonTabButton>
@@ -69,7 +69,7 @@ const MainTabs: React.FC<MainTabsProps> = () => {
         <IonTabButton tab="about" href="/tabs/about">
           <IonIcon icon={informationCircle} />
           <IonLabel>About</IonLabel>
-        </IonTabButton>
+        </IonTabButton> */}
         <IonTabButton tab="bankaccounts" href="/tabs/bankaccounts">
           <IonIcon icon={reader} />
           <IonLabel>Bank Accounts</IonLabel>

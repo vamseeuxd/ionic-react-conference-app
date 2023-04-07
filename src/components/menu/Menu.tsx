@@ -18,6 +18,9 @@ import {
   moonOutline,
   help,
   informationCircleOutline,
+  reader,
+  card,
+  cash,
   logIn,
   logOut,
   mapOutline,
@@ -33,13 +36,13 @@ import './Menu.css';
 
 const routes = {
   appPages: [
-    { title: 'Schedule', path: '/tabs/schedule', icon: calendarOutline },
+    /* { title: 'Schedule', path: '/tabs/schedule', icon: calendarOutline },
     { title: 'Speakers', path: '/tabs/speakers', icon: peopleOutline },
     { title: 'Map', path: '/tabs/map', icon: mapOutline },
-    { title: 'About', path: '/tabs/about', icon: informationCircleOutline },
-    { title: 'Bank Accounts', path: '/tabs/bankaccounts', icon: informationCircleOutline },
-    { title: 'Credit Cards', path: '/tabs/creditcards', icon: informationCircleOutline },
-    { title: 'Cash', path: '/tabs/cash', icon: informationCircleOutline },
+    { title: 'About', path: '/tabs/about', icon: informationCircleOutline }, */
+    { title: 'Bank Accounts', path: '/tabs/bankaccounts', icon: reader },
+    { title: 'Credit Cards', path: '/tabs/creditcards', icon: card },
+    { title: 'Cash', path: '/tabs/cash', icon: cash },
   ],
   loggedInPages: [
     { title: 'Account', path: '/account', icon: person },
