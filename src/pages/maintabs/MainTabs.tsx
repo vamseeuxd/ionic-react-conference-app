@@ -9,12 +9,12 @@ import {
 } from '@ionic/react';
 import { Route, Redirect } from 'react-router';
 import { calendar, location, informationCircle, people } from 'ionicons/icons';
-import SchedulePage from './SchedulePage';
-import SpeakerList from './SpeakerList';
-import SpeakerDetail from './SpeakerDetail';
-import SessionDetail from './SessionDetail';
-import MapView from './MapView';
-import About from './About';
+import SchedulePage from '../schedulePage/SchedulePage';
+import SpeakerList from '../speakerList/SpeakerList';
+import SpeakerDetail from '../speakerDetail/SpeakerDetail';
+import SessionDetail from '../sessionDetail/SessionDetail';
+import MapView from '../mapView/MapView';
+import About from '../about/About';
 
 interface MainTabsProps {}
 

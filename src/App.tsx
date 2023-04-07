@@ -28,7 +28,7 @@ import '@ionic/react/css/display.css';
 
 /* Theme variables */
 import './theme/variables.css';
-import MainTabs from './pages/MainTabs';
+import MainTabs from './pages/maintabs/MainTabs';
 import { connect } from './data/connect';
 import { AppContextProvider } from './data/AppContext';
 import { loadConfData } from './data/sessions/sessions.actions';
@@ -37,11 +37,11 @@ import {
   setUsername,
   loadUserData,
 } from './data/user/user.actions';
-import Account from './pages/Account';
-import Login from './pages/Login';
-import Signup from './pages/Signup';
-import Support from './pages/Support';
-import Tutorial from './pages/Tutorial';
+import Account from './pages/account/Account';
+import Login from './pages/login/Login';
+import Signup from './pages/signup/Signup';
+import Support from './pages/support/Support';
+import Tutorial from './pages/tutorial/Tutorial';
 import HomeOrTutorial from './components/HomeOrTutorial';
 import { Schedule } from './models/Schedule';
 import RedirectToLogin from './components/RedirectToLogin';

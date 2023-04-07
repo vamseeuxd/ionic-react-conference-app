@@ -21,16 +21,16 @@ import {
 } from '@ionic/react';
 import { options, search } from 'ionicons/icons';
 
-import SessionList from '../components/SessionList';
-import SessionListFilter from '../components/SessionListFilter';
+import SessionList from '../../components/SessionList';
+import SessionListFilter from '../../components/SessionListFilter';
 import './SchedulePage.scss';
 
-import ShareSocialFab from '../components/ShareSocialFab';
+import ShareSocialFab from '../../components/ShareSocialFab';
 
-import * as selectors from '../data/selectors';
-import { connect } from '../data/connect';
-import { setSearchText } from '../data/sessions/sessions.actions';
-import { Schedule } from '../models/Schedule';
+import * as selectors from '../../data/selectors';
+import { connect } from '../../data/connect';
+import { setSearchText } from '../../data/sessions/sessions.actions';
+import { Schedule } from '../../models/Schedule';
 
 interface OwnProps {}
 

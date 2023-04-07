@@ -13,13 +13,13 @@ import {
   IonItem,
   IonLabel,
 } from '@ionic/react';
-import { connect } from '../data/connect';
+import { connect } from '../../data/connect';
 import { withRouter, RouteComponentProps } from 'react-router';
-import * as selectors from '../data/selectors';
+import * as selectors from '../../data/selectors';
 import { starOutline, star, share, cloudDownload } from 'ionicons/icons';
 import './SessionDetail.scss';
-import { addFavorite, removeFavorite } from '../data/sessions/sessions.actions';
-import { Session } from '../models/Schedule';
+import { addFavorite, removeFavorite } from '../../data/sessions/sessions.actions';
+import { Session } from '../../models/Schedule';
 
 interface OwnProps extends RouteComponentProps {}
 

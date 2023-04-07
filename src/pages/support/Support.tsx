@@ -16,8 +16,8 @@ import {
   IonTextarea,
   IonToast,
 } from '@ionic/react';
-import './Login.scss';
-import { connect } from '../data/connect';
+import '../login/Login.scss';
+import { connect } from '../../data/connect';
 
 interface OwnProps {}
 

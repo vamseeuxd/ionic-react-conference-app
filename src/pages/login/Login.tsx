@@ -16,8 +16,8 @@ import {
   IonText,
 } from '@ionic/react';
 import './Login.scss';
-import { setIsLoggedIn, setUsername } from '../data/user/user.actions';
-import { connect } from '../data/connect';
+import { setIsLoggedIn, setUsername } from '../../data/user/user.actions';
+import { connect } from '../../data/connect';
 import { RouteComponentProps } from 'react-router';
 
 interface OwnProps extends RouteComponentProps {}
@@ -58,13 +58,13 @@ const Login: React.FC<LoginProps> = ({
   };
 
   return (
-    <IonPage id="signup-page">
+    <IonPage id="login-page">
       <IonHeader>
         <IonToolbar>
           <IonButtons slot="start">
             <IonMenuButton></IonMenuButton>
           </IonButtons>
-          <IonTitle>Signup</IonTitle>
+          <IonTitle>Login</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent>
@@ -84,10 +84,7 @@ const Login: React.FC<LoginProps> = ({
                 value={username}
                 spellCheck={false}
                 autocapitalize="off"
-                onIonInput={(e) => {
-                  setUsername(e.detail.value as string);
-                  setUsernameError(false);
-                }}
+                onIonInput={(e) => setUsername(e.detail.value as string)}
                 required
               >
                 {formSubmitted && usernameError && (
@@ -106,10 +103,7 @@ const Login: React.FC<LoginProps> = ({
                 name="password"
                 type="password"
                 value={password}
-                onIonInput={(e) => {
-                  setPassword(e.detail.value as string);
-                  setPasswordError(false);
-                }}
+                onIonInput={(e) => setPassword(e.detail.value as string)}
               >
                 {formSubmitted && passwordError && (
                   <IonText color="danger" slot="error">
@@ -123,7 +117,12 @@ const Login: React.FC<LoginProps> = ({
           <IonRow>
             <IonCol>
               <IonButton type="submit" expand="block">
-                Create
+                Login
+              </IonButton>
+            </IonCol>
+            <IonCol>
+              <IonButton routerLink="/signup" color="light" expand="block">
+                Signup
               </IonButton>
             </IonCol>
           </IonRow>

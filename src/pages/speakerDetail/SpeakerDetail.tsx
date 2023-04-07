@@ -27,10 +27,10 @@ import {
   shareSharp,
 } from 'ionicons/icons';
 
-import { connect } from '../data/connect';
-import * as selectors from '../data/selectors';
+import { connect } from '../../data/connect';
+import * as selectors from '../../data/selectors';
 
-import { Speaker } from '../models/Speaker';
+import { Speaker } from '../../models/Speaker';
 
 interface OwnProps extends RouteComponentProps {
   speaker?: Speaker;

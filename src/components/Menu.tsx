@@ -37,6 +37,9 @@ const routes = {
     { title: 'Speakers', path: '/tabs/speakers', icon: peopleOutline },
     { title: 'Map', path: '/tabs/map', icon: mapOutline },
     { title: 'About', path: '/tabs/about', icon: informationCircleOutline },
+    { title: 'Bank Accounts', path: '/tabs/about', icon: informationCircleOutline },
+    { title: 'Credit Cards', path: '/tabs/about', icon: informationCircleOutline },
+    { title: 'Cash', path: '/tabs/about', icon: informationCircleOutline },
   ],
   loggedInPages: [
     { title: 'Account', path: '/account', icon: person },
