@@ -31,8 +31,8 @@ import {
 
 import './SessionListFilter.css';
 
-import { connect } from '../data/connect';
-import { updateFilteredTracks } from '../data/sessions/sessions.actions';
+import { connect } from '../../data/connect';
+import { updateFilteredTracks } from '../../data/sessions/sessions.actions';
 
 interface OwnProps {
   onDismissModal: () => void;

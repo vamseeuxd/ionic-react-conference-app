@@ -11,7 +11,7 @@ import {
   IonRow,
   IonCol,
 } from '@ionic/react';
-import SpeakerItem from '../../components/SpeakerItem';
+import SpeakerItem from '../../components/speakerItem/SpeakerItem';
 import { Speaker } from '../../models/Speaker';
 import { Session } from '../../models/Schedule';
 import { connect } from '../../data/connect';

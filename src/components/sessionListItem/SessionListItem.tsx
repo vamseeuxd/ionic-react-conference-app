@@ -8,7 +8,7 @@ import {
   AlertButton,
   useIonToast,
 } from '@ionic/react';
-import { Session } from '../models/Schedule';
+import { Session } from '../../models/Schedule';
 
 interface SessionListItemProps {
   session: Session;

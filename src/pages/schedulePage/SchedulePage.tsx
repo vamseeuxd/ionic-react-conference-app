@@ -21,11 +21,11 @@ import {
 } from '@ionic/react';
 import { options, search } from 'ionicons/icons';
 
-import SessionList from '../../components/SessionList';
-import SessionListFilter from '../../components/SessionListFilter';
+import SessionList from '../../components/sessionList/SessionList';
+import SessionListFilter from '../../components/sessionListFilter/SessionListFilter';
 import './SchedulePage.scss';
 
-import ShareSocialFab from '../../components/ShareSocialFab';
+import ShareSocialFab from '../../components/shareSocialFab/ShareSocialFab';
 
 import * as selectors from '../../data/selectors';
 import { connect } from '../../data/connect';

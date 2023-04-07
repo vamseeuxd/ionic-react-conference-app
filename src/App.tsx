@@ -8,7 +8,7 @@ import {
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 
-import Menu from './components/Menu';
+import Menu from './components/menu/Menu';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -42,9 +42,9 @@ import Login from './pages/login/Login';
 import Signup from './pages/signup/Signup';
 import Support from './pages/support/Support';
 import Tutorial from './pages/tutorial/Tutorial';
-import HomeOrTutorial from './components/HomeOrTutorial';
+import HomeOrTutorial from './components/homeOrTutorial/HomeOrTutorial';
 import { Schedule } from './models/Schedule';
-import RedirectToLogin from './components/RedirectToLogin';
+import RedirectToLogin from './components/redirectToLogin/RedirectToLogin';
 
 setupIonicReact();
 

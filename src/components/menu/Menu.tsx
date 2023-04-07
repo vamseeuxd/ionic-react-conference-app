@@ -26,8 +26,8 @@ import {
   personAdd,
 } from 'ionicons/icons';
 
-import { connect } from '../data/connect';
-import { setDarkMode } from '../data/user/user.actions';
+import { connect } from '../../data/connect';
+import { setDarkMode } from '../../data/user/user.actions';
 
 import './Menu.css';
 

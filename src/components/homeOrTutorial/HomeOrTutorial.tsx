@@ -1,5 +1,5 @@
 import React from 'react';
-import { connect } from '../data/connect';
+import { connect } from '../../data/connect';
 import { Redirect } from 'react-router';
 
 interface StateProps {
