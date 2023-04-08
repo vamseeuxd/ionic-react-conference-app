@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import {
   IonHeader,
   IonToolbar,
@@ -55,7 +55,9 @@ const BackAccounts: React.FC<BackAccountsProps> = () => {
   ]);
   const [isAccountModalOpen, setIsAccountModalOpen] = useState(false);
   const [isEdit, setIsEdit] = useState<IBackAccount | null>(null);
-  const [isToastOpen, setisToastOpen] = useState(false);
+  const [isInit, setIsInit] = useState<boolean>(false);
+  const [isToastOpen, setIsToastOpen] = useState(false);
+  const [isDeleteConfirmation, setIsDeleteConfirmation] = useState(false);
   const [toastMessage, setToastMessage] = useState('');
   const addAccountModalRef = useRef<HTMLIonModalElement>(null);
   const bankNameRef = useRef<HTMLIonInputElement>(null);
@@ -63,18 +65,49 @@ const BackAccounts: React.FC<BackAccountsProps> = () => {
   const bankAccountTitleRef = useRef<HTMLIonInputElement>(null);
   const ifscCodeRef = useRef<HTMLIonInputElement>(null);
 
-  /* prettier-ignore */
+  useEffect(() => {
+    const onPopStateChange = (event: PopStateEvent) => {
+      setIsDeleteConfirmation(false);
+      setIsAccountModalOpen(false);
+    };
+    window.addEventListener('popstate', onPopStateChange);
+    setIsInit(true);
+    return () => {
+      window.removeEventListener('popstate', onPopStateChange);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (isDeleteConfirmation) {
+      history.pushState(null, 'Delete Confirmation', '?DeleteConfirmation');
+    }
+    if (isAccountModalOpen) {
+      history.pushState(null, 'Account Modal', '?AccountModal');
+    }
+    /* if (!isDeleteConfirmation && !isAccountModalOpen && isInit) {
+      history.back();
+    } */
+  }, [isDeleteConfirmation, isAccountModalOpen]);
+
   const onAddOrEditConfirm = () => {
     const id = new Date().getTime().toString();
-    const bankName = bankNameRef.current ? bankNameRef.current.value : undefined;
-    const accountNumber = accountNumberRef.current ? accountNumberRef.current.value : undefined;
-    const bankAccountTitle = bankAccountTitleRef.current ? bankAccountTitleRef.current.value : undefined;
-    const ifscCode = ifscCodeRef.current ? ifscCodeRef.current.value : undefined;
+    const bankName = bankNameRef.current
+      ? bankNameRef.current.value
+      : undefined;
+    const accountNumber = accountNumberRef.current
+      ? accountNumberRef.current.value
+      : undefined;
+    const bankAccountTitle = bankAccountTitleRef.current
+      ? bankAccountTitleRef.current.value
+      : undefined;
+    const ifscCode = ifscCodeRef.current
+      ? ifscCodeRef.current.value
+      : undefined;
     if (bankName && accountNumber && bankAccountTitle && ifscCode) {
       const data = { id, bankName, accountNumber, bankAccountTitle, ifscCode };
       addAccountModalRef.current?.dismiss(data, 'confirm');
     } else {
-      setisToastOpen(true);
+      setIsToastOpen(true);
       setToastMessage(`Please provide valid ${CONSTANTS.namePlural} details`);
     }
   };
@@ -85,6 +118,9 @@ const BackAccounts: React.FC<BackAccountsProps> = () => {
     if (ev.detail.role === 'confirm') {
       if (!isEdit) {
         setBankAccounts([...bankAccoutns, ev.detail.data]);
+        setToastMessage(`${CONSTANTS.nameSingular} added successfully.`);
+        setIsToastOpen(true);
+        history.back();
       } else {
         setBankAccounts(
           bankAccoutns.map((account) => {
@@ -95,6 +131,9 @@ const BackAccounts: React.FC<BackAccountsProps> = () => {
             }
           })
         );
+        setToastMessage(`${CONSTANTS.nameSingular} updated successfully.`);
+        setIsToastOpen(true);
+        history.back();
       }
     }
   };
@@ -109,7 +148,12 @@ const BackAccounts: React.FC<BackAccountsProps> = () => {
       <IonFooter>
         <IonToolbar>
           <IonButtons slot="end">
-            <IonButton onClick={() => addAccountModalRef.current?.dismiss()}>
+            <IonButton
+              onClick={() => {
+                addAccountModalRef.current?.dismiss();
+                history.back();
+              }}
+            >
               Cancel
             </IonButton>
           </IonButtons>
@@ -128,7 +172,7 @@ const BackAccounts: React.FC<BackAccountsProps> = () => {
       <IonToast
         isOpen={isToastOpen}
         message={toastMessage}
-        onDidDismiss={() => setisToastOpen(false)}
+        onDidDismiss={() => setIsToastOpen(false)}
         duration={3000}
         style={{ height: '90%' }}
         buttons={[
@@ -136,7 +180,7 @@ const BackAccounts: React.FC<BackAccountsProps> = () => {
             text: 'Dismiss',
             role: 'cancel',
             handler: () => {
-              setisToastOpen(false);
+              setIsToastOpen(false);
             },
           },
         ]}
@@ -216,7 +260,6 @@ const BackAccounts: React.FC<BackAccountsProps> = () => {
         isOpen={isOpen}
         onDidDismiss={() => {
           setIsAccountModalOpen(false);
-          setisToastOpen(false);
         }}
         onWillDismiss={(ev) => onAddOrEditAccountWillDismiss(ev)}
       >
@@ -231,7 +274,6 @@ const BackAccounts: React.FC<BackAccountsProps> = () => {
           {renderAccountNumberInput()}
           {renderIfscCodeInput()}
         </IonContent>
-        {renderToast()}
         {renderFooter()}
       </IonModal>
     );
@@ -257,18 +299,27 @@ const BackAccounts: React.FC<BackAccountsProps> = () => {
       <IonAlert
         header="Delete Confirmation"
         message={`Are you sure! Do you want to delete '${data.bankAccountTitle}' Bank Account`}
-        trigger={data.id + '_delete_button'}
+        isOpen={isDeleteConfirmation}
         buttons={[
           {
             text: 'Cancel',
             role: 'cancel',
-            handler: () => {},
+            handler: () => {
+              setIsDeleteConfirmation(false);
+              history.back();
+            },
           },
           {
             text: 'OK',
             role: 'confirm',
             handler: () => {
+              setIsDeleteConfirmation(false);
+              history.back();
               setBankAccounts(bankAccoutns.filter((ba) => ba.id !== data.id));
+              setToastMessage(
+                `${CONSTANTS.nameSingular} deleted successfully.`
+              );
+              setIsToastOpen(true);
             },
           },
         ]}
@@ -278,13 +329,18 @@ const BackAccounts: React.FC<BackAccountsProps> = () => {
 
   const renderOptions = (data: any) => {
     const styles = { width: '80px' };
-    const deleteId = data.id + '_delete_button';
     return (
       <IonItemOptions side="start">
         <IonItemOption onClick={() => onEditAccountClick(data)} style={styles}>
           EDIT
         </IonItemOption>
-        <IonItemOption id={deleteId} style={styles} color="danger">
+        <IonItemOption
+          onClick={() => {
+            setIsDeleteConfirmation(true);
+          }}
+          style={styles}
+          color="danger"
+        >
           Delete
         </IonItemOption>
         {renderAlert(data)}
@@ -346,6 +402,7 @@ const BackAccounts: React.FC<BackAccountsProps> = () => {
           isAccountModalOpen
         )}
       </IonContent>
+      {renderToast()}
     </IonPage>
   );
 };
