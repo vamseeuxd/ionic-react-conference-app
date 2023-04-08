@@ -17,7 +17,6 @@ import {
   IonButton,
   IonInput,
   IonFooter,
-  IonText,
   IonItemSliding,
   IonItemOptions,
   IonItemOption,
@@ -298,7 +297,7 @@ const BackAccounts: React.FC<BackAccountsProps> = () => {
     return (
       <IonAlert
         header="Delete Confirmation"
-        message={`Are you sure! Do you want to delete '${data.bankAccountTitle}' Bank Account`}
+        message={`Are you sure! Do you want to delete '${data.bankAccountTitle}' ${CONSTANTS.nameSingular}`}
         isOpen={isDeleteConfirmation}
         buttons={[
           {
