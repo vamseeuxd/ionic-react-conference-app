@@ -8,7 +8,7 @@ import {
   IonLabel,
 } from '@ionic/react';
 import { Route, Redirect } from 'react-router';
-import { calendar, location, informationCircle, people, cash, card, reader } from 'ionicons/icons';
+import { cash, card, reader } from 'ionicons/icons';
 import SchedulePage from '../schedulePage/SchedulePage';
 import SpeakerList from '../speakerList/SpeakerList';
 import SpeakerDetail from '../speakerDetail/SpeakerDetail';
